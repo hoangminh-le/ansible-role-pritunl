@@ -1,0 +1,50 @@
+- name: Add mongodb apt repository
+  apt_repository:
+    repo: deb https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/{{ mongodb_version }} multiverse
+    filename: "mongodb-org-{{ mongodb_version }}"
+    state: present
+
+- name: Add pritunl apt repository
+  apt_repository:
+    repo: deb http://repo.pritunl.com/stable/apt focal main
+    filename: "pritunl"
+    state: present
+
+- name: Add Apt Keys
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "{{ item }}"
+  with_items: "{{ apt_keys }}"
+
+- name: Update system OS
+  apt: update_cache=yes
+
+- name: Upgrade system OS
+  apt: upgrade=yes
+
+- name: Install tools
+  apt:
+    name:
+    - pritunl
+    - mongodb
+    - wireguard
+    - wireguard-tools
+    state: present
+
+- name: Enable pritunl and mongodb
+  service: 
+    name:
+    - pritunl
+    - mongodb
+    enabled: yes
+
+- name: Start pritunl and mongodb
+  service:
+    name:
+    - pritunl
+    - mongodb
+    state: started
+
+- name: Disable ufw
+  community.general.ufw:
+    state: disabled

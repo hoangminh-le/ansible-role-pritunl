@@ -1,0 +1,11 @@
+---
+- include: setup.yml
+  become: yes
+  become_method: sudo
+  tags: ["setup"]
+
+- include: config.yml
+  become: yes
+  become_method: sudo
+  tags: ["config"]
+
