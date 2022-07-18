@@ -1,3 +1,10 @@
+- name: Add Apt Keys
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "{{ item }}"
+  with_items: "{{ apt_keys }}"
+
+
 - name: Add mongodb apt repository
   apt_repository:
     repo: deb https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/{{ mongodb_version }} multiverse
@@ -9,12 +16,6 @@
     repo: deb http://repo.pritunl.com/stable/apt focal main
     filename: "pritunl"
     state: present
-
-- name: Add Apt Keys
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: "{{ item }}"
-  with_items: "{{ apt_keys }}"
 
 - name: Update system OS
   apt: update_cache=yes
