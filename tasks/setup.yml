@@ -27,18 +27,18 @@
   apt:
     name:
     - pritunl
-    - mongodb
+    - mongodb-org
     - wireguard
     - wireguard-tools
     state: present
 
 - name: Enable pritunl and mongodb
   shell: |
-    systemctl enable mongodb pritunl
+    systemctl enable mongod pritunl
 
 - name: Start pritunl and mongodb
   shell: |
-    systemctl start mongodb pritunl
+    systemctl start mongod pritunl
 
 - name: Disable ufw
   community.general.ufw:
