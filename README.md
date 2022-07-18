@@ -1,4 +1,4 @@
-# Pritnul VPN server
+# Pritunl VPN server
 
 This roles helps to install Pritunl VPN Server across Ubuntu variants.
 
