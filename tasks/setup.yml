@@ -17,12 +17,6 @@
     filename: "pritunl"
     state: present
 
-- name: Update system OS
-  apt: update_cache=yes
-
-- name: Upgrade system OS
-  apt: upgrade=yes
-
 - name: Install tools
   apt:
     name:
