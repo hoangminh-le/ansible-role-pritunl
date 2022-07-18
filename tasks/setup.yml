@@ -34,11 +34,11 @@
 
 - name: Enable pritunl and mongodb
   shell: |
-    systemctl enable mongod pritunl
+    systemctl enable mongodb pritunl
 
 - name: Start pritunl and mongodb
   shell: |
-    systemctl start mongod pritunl
+    systemctl start mongodb pritunl
 
 - name: Disable ufw
   community.general.ufw:
