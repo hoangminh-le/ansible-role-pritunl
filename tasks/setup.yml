@@ -27,12 +27,10 @@
     state: present
 
 - name: Enable pritunl and mongodb
-  shell: |
-    systemctl enable mongod pritunl
+  shell: systemctl enable mongod pritunl
 
 - name: Start pritunl and mongodb
-  shell: |
-    systemctl start mongod pritunl
+  shell: systemctl start mongod pritunl
 
 - name: Disable ufw
   community.general.ufw:

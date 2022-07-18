@@ -4,3 +4,13 @@
     echo "* soft nofile 64000" >> /etc/security/limits.conf
     echo "root hard nofile 64000" >> /etc/security/limits.conf
     echo "root soft nofile 64000" >> /etc/security/limits.conf
+
+- name: Set mongodb uri
+  shell: pritunl set-mongodb mongodb://localhost:27017/pritunl
+  notify: Restart pritunl
+
+- name: Retrieve pritunl password
+  shell: pritunl default-password
+  register: password
+
+- debug: var=password.stdout_lines
