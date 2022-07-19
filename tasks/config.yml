@@ -13,7 +13,10 @@
   shell: pritunl default-password
   register: password
 
-- name: Change server port
-  shell: pritunl set app.server_port 8081
+- name: Change server configuration
+  shell: |
+    pritunl set app.server_port 8081
+    pritunl set app.redirect_server false
+    pritunl set app.server_ssl false
 
 - debug: var=password.stdout_lines
